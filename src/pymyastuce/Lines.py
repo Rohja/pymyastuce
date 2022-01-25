@@ -12,6 +12,13 @@ class Line(object):
     def getAllLines(cls):
         return cls.__lines
 
+    @classmethod
+    def getLineByName(cls, name):
+        for l in cls.__lines:
+            if l.name == name:
+                return l
+        raise ValueError(f"No line with name '{name}'.")
+
     def __init__(self, name, id, start, end):
         self.name = name
         self.id = id
@@ -70,7 +77,3 @@ D2 = Line("D2", "117", ('',), ('',))
 t35 = Line("t35", "156", ("Sente+d'Houdeville+CANTELEU", 'Mont-Riboudet+Kindarena+ROUEN'), ('Bérat+MAROMME-LA+MAINE',))
 t53 = Line("t53", "171", ('Coteaux+du+Larmont+ROUEN',), ('Boulingrin+ROUEN',))
 t54 = Line("t54", "172", ("Pont+d'Eauplet+SOTTEVILLE-LES-ROUEN", 'Hôtel+de+Ville+SOTTEVILLE-LES-ROUEN'), ('Dieppedalle+Rive+Gauche+GRAND+QUEVILLY',))
-
-if __name__ == "__main__":
-    print(METRO.getTerminus(1))
-    print(Line.getAllLines())

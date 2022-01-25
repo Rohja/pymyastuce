@@ -17,11 +17,7 @@ class Request(object):
 
     def enableDebug(self):
         self.logger.setLevel(logging.DEBUG)
-        try:
-            import http.client as http_client
-        except ImportError:
-            # Python 2
-            import httplib as http_client
+        import http.client as http_client
         http_client.HTTPConnection.debuglevel = 1
 
         # You must initialize logging, otherwise you'll not see debug output.
@@ -64,9 +60,3 @@ class Request(object):
         if raw:
             return r.text
         return self.getNextFormatter(r.text)
-
-if __name__ == "__main__":
-    from Lines import METRO
-    from Stations import EUROPE
-    r = Request(debug=True).getNext(METRO, EUROPE, 1)
-    print(r)

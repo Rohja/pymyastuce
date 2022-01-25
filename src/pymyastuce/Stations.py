@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from Lines import METRO, _6
+from .Lines import METRO, _6
 
 class Station(object):
     _Station__stations = []

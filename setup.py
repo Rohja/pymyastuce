@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="pymyastuce",
-    version="0.0.2",
+    version="0.0.3",
     author="Paul Rohja LESELLIER",
     author_email="rohja@rohja.com",
     description="A small package to fetch next bus/metro/tram at a station of the MyAstuce network in Rouen, France.",

@@ -1,16 +1,30 @@
 #!/usr/bin/env python3
 
 class Line(object):
+    _Line__lines = []
+
+    @classmethod
+    def registerLine(cls, station):
+        if station not in cls.__lines:
+            cls.__lines.append(station)
+
+    @classmethod
+    def getAllLines(cls):
+        return cls.__lines
+
     def __init__(self, name, id, start, end):
         self.name = name
         self.id = id
         self.terminus = [start, end]
+        Line.registerLine(self)
 
     def getTerminus(self, direction):
         if direction not in [1, 2]:
             raise ValueError(f"Expected direction to be either 1 or 2, got '{direction}'")
         return self.terminus[direction - 1]
 
+    def __repr__(self):
+        return f"<Line: {self.name}>"
 
 METRO = Line("Métro", "175", ('Technopôle+SAINT-ETIENNE-DU-ROUVRAY', 'Georges+Braque+GRAND+QUEVILLY'), ('Boulingrin+ROUEN',))
 T1 = Line("T1", "176", ('CHU+Charles+Nicolle+ROUEN',), ('Mont+aux+Malades+MONT-SAINT-AIGNAN',))
@@ -59,3 +73,4 @@ t54 = Line("t54", "172", ("Pont+d'Eauplet+SOTTEVILLE-LES-ROUEN", 'Hôtel+de+Vill
 
 if __name__ == "__main__":
     print(METRO.getTerminus(1))
+    print(Line.getAllLines())
